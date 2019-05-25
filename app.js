@@ -13,13 +13,14 @@ app.use(bodyParser.urlencoded({
 //Express server
 app.listen(process.env.PORT || port, () => console.log(`todolist-v1 starts on ${port}`));
 
+//EJS view engine
+app.set('view engine', 'ejs');
+
 //Home
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
 
     var today = new Date();
     var currentDay = today.getDay();
-
-    console.log(__dirname);
 
     if (currentDay === 0 || currentDay === 6) {
         res.sendFile(__dirname + `/weekend.html`);
