@@ -46,30 +46,31 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
 
     let item = req.body.todoItem;
+    let listTitle = req.body.todoSubmit;
 
-    items.push(item);
+    console.log(listTitle);
 
-    res.redirect('/');
+    if (listTitle === 'Work') {
+
+        workItems.push(item);
+
+        res.redirect('/work');
+    } else {
+
+        items.push(item);
+
+        res.redirect('/');
+    }
 
 });
 
 //Work todo-list route
-app.get('/work', (req,res) => {
+app.get('/work', (req, res) => {
 
     res.render('list', {
         listTitle: 'Work List',
         newListItems: workItems
     });
-
-});
-
-app.post('/work', (req, res) => {
-
-    let item = req.body.todoItem;
-
-    workItems.push(item);
-
-    res.redirect('/work');
 
 });
 
