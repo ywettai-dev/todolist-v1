@@ -8,8 +8,8 @@ const port = 3000;
 //Custom Library
 const date = require(__dirname + `/library/date.js`);
 
-let items = [];
-let workItems = [];
+const items = [];
+const workItems = [];
 
 //express public link
 app.use(express.static('public/'));
