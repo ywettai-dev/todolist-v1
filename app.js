@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const port = 3000;
 
 let items = [];
+let workItems = [];
 
 //express public link
 app.use(express.static('public/'));
@@ -36,7 +37,7 @@ app.get('/', (req, res) => {
 
     //res.render to send EJS
     res.render('list', {
-        kindOfDay: day,
+        listTitle: day,
         newListItems: items
     });
 
@@ -51,3 +52,24 @@ app.post('/', (req, res) => {
     res.redirect('/');
 
 });
+
+//Work todo-list route
+app.get('/work', (req,res) => {
+
+    res.render('list', {
+        listTitle: 'Work List',
+        newListItems: workItems
+    });
+
+});
+
+app.post('/work', (req, res) => {
+
+    let item = req.body.todoItem;
+
+    workItems.push(item);
+
+    res.redirect('/work');
+
+});
+
