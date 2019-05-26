@@ -5,6 +5,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = 3000;
 
+let items = [];
+
 //body-parser
 app.use(bodyParser.urlencoded({
     extended: true
@@ -13,7 +15,7 @@ app.use(bodyParser.urlencoded({
 //Express server
 app.listen(process.env.PORT || port, () => console.log(`todolist-v1 starts on ${port}`));
 
-//EJS view engine
+//EJS view engine with express
 app.set('view engine', 'ejs');
 
 //Home
@@ -31,8 +33,18 @@ app.get('/', (req, res) => {
 
     //res.render to send EJS
     res.render('list', {
-        kindOfDay: day
+        kindOfDay: day,
+        newListItem: items
     });
 
+});
+
+app.post('/', (req, res) => {
+
+    var item = req.body.todoItem;
+
+    items.push(item);
+
+    res.redirect('/');
 
 });
