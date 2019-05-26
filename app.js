@@ -5,6 +5,9 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = 3000;
 
+//Custom Library
+const date = require(__dirname + `/library/date.js`);
+
 let items = [];
 let workItems = [];
 
@@ -25,15 +28,7 @@ app.set('view engine', 'ejs');
 //Home
 app.get('/', (req, res) => {
 
-    let today = new Date();
-
-    let options = {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long'
-    };
-
-    let day = today.toLocaleDateString('en-US', options);
+    let day = date.getDate();    
 
     //res.render to send EJS
     res.render('list', {
