@@ -7,6 +7,9 @@ const port = 3000;
 
 let items = [];
 
+//express public link
+app.use(express.static('public/'));
+
 //body-parser
 app.use(bodyParser.urlencoded({
     extended: true
@@ -21,27 +24,27 @@ app.set('view engine', 'ejs');
 //Home
 app.get('/', (req, res) => {
 
-    var today = new Date();
+    let today = new Date();
 
-    var options = {
+    let options = {
         weekday: 'long',
         day: 'numeric',
         month: 'long'
     };
 
-    var day = today.toLocaleDateString('en-US', options);
+    let day = today.toLocaleDateString('en-US', options);
 
     //res.render to send EJS
     res.render('list', {
         kindOfDay: day,
-        newListItem: items
+        newListItems: items
     });
 
 });
 
 app.post('/', (req, res) => {
 
-    var item = req.body.todoItem;
+    let item = req.body.todoItem;
 
     items.push(item);
 
