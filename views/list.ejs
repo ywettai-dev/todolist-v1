@@ -1,36 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('header.ejs'); -%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <%# favicon %>
-    <link rel="icon" href="images/burger-favicon.ico">
-    <title>To Do List</title>
-    <%# main css %>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>
+<div class="box" id="heading">
+    <h1> <%= listTitle %> </h1>
+</div>
 
-<body>
-
-    <div class="box" id="heading">
-        <h1> <%= listTitle %> </h1>
+<div class="box">
+    <% for(let i = 0; i < newListItems.length; i++) {%>
+    <div class="item">
+        <input type="checkbox">
+        <p> <%= newListItems[i] %> </p>
     </div>
+    <% } %>
+    <form class="item" action="/" method="POST">
+        <input type="text" name="todoItem" placeholder="todo item" autocomplete="off">
+        <button type="submit" name="todoSubmit" value=<%= listTitle %>>+</button>
+    </form>
+</div>
 
-    <div class="box">
-        <% for(let i = 0; i < newListItems.length; i++) {%>
-        <div class="item">
-            <input type="checkbox">
-            <p> <%= newListItems[i] %> </p>
-        </div>
-        <% } %>
-        <form class="item" action="/" method="POST">
-            <input type="text" name="todoItem" placeholder="todo item" autocomplete="off">
-            <button type="submit" name="todoSubmit" value=<%= listTitle %>>+</button>
-        </form>
-    </div>
-
-</body>
-
-</html>
+<%- include('footer.ejs'); -%>
