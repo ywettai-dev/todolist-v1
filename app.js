@@ -20,12 +20,19 @@ app.set('view engine', 'ejs');
 app.get('/', (req, res) => {
 
     var today = new Date();
-    var currentDay = today.getDay();
 
-    if (currentDay === 0 || currentDay === 6) {
-        res.sendFile(__dirname + `/weekend.html`);
-    } else {
-        res.sendFile(__dirname + `/weekday.html`);
-    }
+    var options = {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long'
+    };
+
+    var day = today.toLocaleDateString('en-US', options);
+
+    //res.render to send EJS
+    res.render('list', {
+        kindOfDay: day
+    });
+
 
 });
