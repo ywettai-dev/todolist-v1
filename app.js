@@ -43,8 +43,6 @@ app.post('/', (req, res) => {
     let item = req.body.todoItem;
     let listTitle = req.body.todoSubmit;
 
-    console.log(listTitle);
-
     if (listTitle === 'Work') {
 
         workItems.push(item);
